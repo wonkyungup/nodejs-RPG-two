@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Minimal working example</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        socket.on('connect',function(data){
+            console.log('Server connection!');
+        });
+
+        socket.on('message',function(msg){
+            let content =  document.getElementById('div').value=msg;
+            document.getElementById('div').append('\r\n'+content);
+        });
+
+        function enterkey(){
+            if(window.event.keyCode == 13){
+                let inputValue = document.getElementById("input").value;
+                socket.emit('message', inputValue);
+                document.getElementById('input').value = "";
+            }
+        }
+    </script>
+</head>
+<body>
+    <input onkeydown="enterkey();" type="text" id="input"/>
+    <br>
+    <div id="div">
+            Web Socket
+    </div>
+</body>
+</html>

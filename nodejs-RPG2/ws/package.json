@@ -1,0 +1,17 @@
+{
+  "name": "ws-socket",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon ./bin/www/"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^9.1.0",
+    "jquery": "^3.5.1",
+    "nodemon": "^2.0.4",
+    "ws": "^7.3.1"
+  }
+}

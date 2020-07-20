@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Minimal working example</title>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+    const socket = io("http://localhost:3000");
+
+    socket.on('connect',function(msg){
+        console.log('Server connection!');
+    });
+
+    socket.on('message',function(msg){
+        let liValue = document.getElementById('li_list');
+        liValue.append('\r\n'+msg);
+    });
+
+    function enterkey(){
+        if(window.event.keyCode == 13){
+            let inputMessageValue = document.getElementById('inputMessage').value;
+            socket.emit('message', inputMessageValue);         
+            document.getElementById('inputMessage').value="";
+        }
+    }
+    </script>
+</head>
+<body>
+    <input onkeydown="enterkey();" type="text" id="inputMessage" value=""/>
+    <li id="li_list"></li>
+</body>
+</html>
